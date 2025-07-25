@@ -1,22 +1,26 @@
 package core.basesyntax;
 
-public class Box {
-    private final String name;
-    private final String color;
+public class Box<T> {
+    private T value;
 
-    public Box() {
-        this.name = "default";
-        this.color = "gray";
+    // Конструктор для ініціалізації значення коробки
+    public Box(T value) {
+        this.value = value;
     }
 
-    public Box(String name, String color) {
-        this.name = name;
-        this.color = color;
+    // Сеттер для зміни значення
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    // Геттер для отримання значення
+    public T getValue() {
+        return value;
     }
 
     @Override
     public String toString() {
-        return "Box{name='" + name + "', color='" + color + "'}";
+        return "Box{value=" + value + '}';
     }
 
     @Override
@@ -27,13 +31,13 @@ public class Box {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Box box = (Box) o;
-        return name.equals(box.name) && color.equals(box.color);
+        Box<?> box = (Box<?>) o;
+        return (value == null && box.value == null) || (value != null && value.equals(box.value));
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode() + 31 * color.hashCode();
+        return value != null ? value.hashCode() : 0;
     }
 }
 
