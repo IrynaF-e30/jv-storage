@@ -14,14 +14,6 @@ public class Box {
         this.color = color;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
     @Override
     public String toString() {
         return "Box{name='" + name + "', color='" + color + "'}";
